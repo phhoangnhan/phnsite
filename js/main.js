@@ -87,7 +87,7 @@
 
         /** Typed.js (Text typing effect) */
         $("#typed").typed({
-            strings: ["^2100&nbsp;I'm Pham Hoang Nhan.<br/>Editor/Designer from Ho Chi Minh City."],
+            strings: ["^2100&nbsp;I'm Pham Hoang Nhan.<br/>Editor from Ho Chi Minh City."],
             typeSpeed: 30,
             backDelay: 750,
             loop: false,
