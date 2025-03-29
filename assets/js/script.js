@@ -3,8 +3,9 @@
 
 	// Theme color control js
 	$(document).ready(function () {
-		const isDarkMode = localStorage.getItem('darkMode') === 'true';
-		$('body').toggleClass('dark-theme', isDarkMode);
+
+		// const isDarkMode = localStorage.getItem('darkMode') === 'true';
+		$('body').toggleClass('dark-theme', 'true');
 
 		$('#page-content').fadeIn(0);
 
@@ -12,6 +13,7 @@
 			$('body').toggleClass('dark-theme');
 
 			const isDark = $('body').hasClass('dark-theme');
+
 			localStorage.setItem('darkMode', isDark);
 		});
 	});
