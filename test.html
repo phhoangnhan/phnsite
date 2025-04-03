@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Form gửi Google Sheet miễn phí</title>
+</head>
+<body>
+  <form id="myForm">
+    <input type="text" name="name" placeholder="Tên" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <textarea name="message" placeholder="Nội dung" required></textarea><br>
+    <button type="submit">Gửi</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxU8vnIK5O1qo-sULB7bfWp3PQu9nz6CQWPzKQpLgAhTWBmejaTh0rtRJAO7UbuFg/exec';
+    const form = document.getElementById('myForm');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        message: formData.get('message')
+      };
+
+      fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => res.text())
+      .then(text => {
+        status.innerText = "✅ Gửi thành công!";
+        form.reset();
+      })
+      .catch(err => {
+        status.innerText = "❌ Lỗi gửi: " + err.message;
+      });
+    });
+  </script>
+</body>
+</html>
