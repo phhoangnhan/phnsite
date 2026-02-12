@@ -20,9 +20,14 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
 
+
+
   <!-- SCRIPT -->
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 
 
   <style>
@@ -355,6 +360,17 @@
                          
                           <div class="comments-box">
 
+                              <div id="barcode-wrapper" class="barcode-wrapper" style="margin: 15px 0;">
+                                  <!-- <img id="barcode-img" src="" alt="Barcode" style="width: 100%; display: none; border-radius: 5px;"> -->
+                                  <a id="barcode-lightbox" href="" class="popup-image">
+                                      <img id="barcode-thumb" src="" alt="Quà tặng" 
+                                           style="width: 100%; border-radius: 5px; cursor: zoom-in; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                                  </a>
+                                  <p style="font-size: 0.75rem; color: #888; margin-top: 8px;">(Bấm vào hình để xem voucher đầy đủ)</p>
+                              </div>
+
+
+
                                <div class="coupon-box">
                                     <span id="tri_gia_display" class="discount-value">0đ</span>
                                     <div style="font-weight:bold">Mã: <span id="ten_ma_display" style="color:#d32f2f">...</span></div>
@@ -449,7 +465,10 @@
                             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                               data-bs-parent="#accordionExample">
                               <div class="accordion-body">
-                                <p>Là một phiếu mua hàng có thể sử dụng tại chuỗi cửa hàng: <b>Bách Hóa Xanh, Điện Máy Xanh, Thế Giới Di Động, Nhà thuốc An Khang</b> <br> Bạn có thể <b>cộng dồn</b> nhiều mã!</p>
+                                <p>Là một phiếu mua hàng có thể <b>sử dụng như tiền mặt </b> tại <b> 300+</b> thương hiệu liên kết Got It toàn quốc
+                                        <img src="assets/img/sieuthi.png"  style="width: 100%; border: 2px solid #ffd700; object-fit: cover; margin: 15px 0px 15px 0px";>
+                                        <br>Xem thêm các đối tác thương hiệu tại <a href="https://www.gotit.vn/brands" target="_blank">đây</a>
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -489,7 +508,7 @@
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                               data-bs-parent="#accordionExample">
                               <div class="accordion-body">
-                                <p>Bạn nên dùng <b>trước ngày 02.02.2027</b></p>
+                                <p>Bạn nên dùng <b>trước ngày 31.12.2026</b></p>
                               </div>
                             </div>
                           </div>
@@ -509,7 +528,20 @@
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                               data-bs-parent="#accordionExample">
                               <div class="accordion-body">
-                                <p><b>Đưa mã cho Thu Ngân</b> khi tiến hành thanh toán. <br> Có thể thanh toán online</p>
+                                <p><b>Đưa mã bar code cho Thu Ngân</b> khi tiến hành thanh toán tại các cửa hàng. <br> <b>Hoặc tải app GotIt</b> và tiến hành cộng tiền từ mã QR
+                                      <hr>
+                                      Áp dụng với ZaloPay:
+                                      <br><b>Thêm "GI" trước mã của bạn và dùng cụm mã này ở bước thanh toán tại Zalopay</b>
+                                      <br>Ví dụ: GI01012026
+                                      <hr>
+                                      Cú pháp Quy đổi mã để nhận được mã giảm giá dùng cho:
+                                      <br>Grab: <b>GRAB_G_Mã của bạn</b>
+                                       <br>Shopee: <b>SPE_Mã của bạn</b>
+                                        <br>ShopeeFood: <b>SPFOOD_Mã của bạn</b>
+                                         <br>XanhSM: <b>XANHSM_Mã của bạn</b>
+                                         <hr>
+                                      Xem thêm cách sử dụng tại <a href="https://www.gotit.vn/how-to-use" target="_blank">đây</a>
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -720,22 +752,19 @@
                                       // Ưu tiên lấy tên đã lưu trực tiếp trong bảng lì xì
                                       const tenHienThi = data.ten_nguoi_dung || "Một người bạn";
                                       const sdtCuoi = data.sdt.slice(-3);
-
-
-
                                   
                                   // Tìm thẻ hiển thị lời chúc
-                                        const loiChucEl = document.getElementById('lời-chúc');
+                                      const loiChucEl = document.getElementById('lời-chúc');
 
-                                        loiChucEl.innerHTML = `Món quà này đã được <b>${tenHienThi}</b> với số điện thoại cuối <b>${sdtCuoi}</b> nhận rồi! 🧧`;
+                                      loiChucEl.innerHTML = `Món quà này đã được <b>${tenHienThi}</b> với số điện thoại cuối <b>${sdtCuoi}</b> nhận rồi! 🧧`;
 
-                                        // Cấu hình giao diện hiển thị quà đã mở
-                                        document.getElementById('welcomeForm').style.display = 'none';
-                                        document.getElementById('packet-ui').classList.add('opened');
-                                        showGiftUI(false); // Hiển thị quà nhưng không nổ pháo hoa tự động
+                                      // Cấu hình giao diện hiển thị quà đã mở
+                                      document.getElementById('welcomeForm').style.display = 'none';
+                                      document.getElementById('packet-ui').classList.add('opened');
+                                      showGiftUI(false); // Hiển thị quà nhưng không nổ pháo hoa tự động
                                     } else {
-                                        // Nếu mã chưa có người nhận thì hiện form nhập SDT
-                                        document.getElementById('welcomeForm').style.display = 'block';
+                                      // Nếu mã chưa có người nhận thì hiện form nhập SDT
+                                      document.getElementById('welcomeForm').style.display = 'block';
                                     }
 
                                   // CHỈ ẨN OVERLAY KHI MỌI THỨ HỢP LỆ
@@ -746,24 +775,13 @@
                                   console.error("Lỗi:", err);
                                   overlay.innerHTML = `<p>Lỗi kết nối database:<br>${err.message}</p>`;
                                   // Không ẩn overlay để người dùng thấy lỗi mà báo lại cho bạn
-                              }  
-
-
-
-
-
-                 
-
-                   
+                              }    
               
             }
 
 
-
-
-    // 3. Hàm xử lý khi bấm nút Xác nhận
+                // 3. Hàm xử lý khi bấm nút Xác nhận
                 let isNewUser = false;
-
                 async function checkAndRedeem() {
                   const sdtInput = document.getElementById('sdt-input').value.trim();
                   const errorEl = document.getElementById('auth-error');
@@ -771,8 +789,6 @@
                   //Lấy dữ liệu từ ô nhập tên
                   const hoTenMoiInput = document.getElementById('ho-ten-moi');
                   const nameField = document.getElementById('name-field');
-
-                
 
                   if (!sdtInput) { showIOSAlert("Đừng để trống số điện thoại", "warning"); return; }
                   
@@ -791,7 +807,6 @@
 
 
                     let hoTen = "";
-
 
                     if (!user) {
                       // Nếu chưa có và chưa hiện ô nhập tên -> Hiện ô nhập tên
@@ -855,36 +870,48 @@
 
 
 
-                        function showGiftUI(withConfetti) {
+                 function showGiftUI(withConfetti) {
                           document.getElementById('main-card').style.display = 'block';
                           document.getElementById('coupon-result').style.display = 'block';
 
                           const displayArea = document.getElementById('ten_ma_display');
-                          const fullCode = savedData.ten_ma; // Giả sử mã 200k là "ABCDEFGHIJKLMNPQR" (18 ký tự)
+                          const fullCode = savedData.ma_qua_tang; // Giả sử mã 200k là "ABCDEFGHIJKLMNPQR" (18 ký tự)
 
 
-                          // KIỂM TRA ĐỘ DÀI MÃ (Độ dài mã chuẩn là 9)
-                          if (fullCode.length > 9) {
-                              // Cắt chuỗi thành 2 mã riêng biệt
-                              const code1 = fullCode.substring(0, 9);
-                              const code2 = fullCode.substring(9);
+                         
+                          displayArea.innerHTML = `<b id="code-single">${fullCode}</b>`;
 
-                              // Hiển thị giao diện 2 mã
-                              displayArea.innerHTML = `
-                                  <div class="dual-code-container">
-                                      <div class="code-item">
-                                          <span>Số 1 (100.000đ):</span> <b id="code-v1">${code1}</b>
-                                          <button class="submit-btn mini-copy" onclick="copyIndividual('code-v1')">Copy</button>
-                                      </div>
-                                      <div class="code-item" style="margin-top: 10px;">
-                                          <span>Số 2 (100.000đ):</span> <b id="code-v2">${code2}</b>
-                                          <button class="submit-btn mini-copy" onclick="copyIndividual('code-v2')">Copy</button>
-                                      </div>
-                                  </div>
-                              `;
+
+
+                          const thumbImg = document.getElementById('barcode-thumb');
+                          const largeLink = document.getElementById('barcode-lightbox');
+                          
+
+
+                          if (savedData.ten_ma) {
+                              const ten_ma_hinh = savedData.ten_ma;
+                              
+
+                              // barcodeImg.src = "assets/img/code/"+savedData.ten_ma+"_code.jpg";
+                              // barcodeImg.style.display = 'inline-block';
+
+                              thumbImg.src = "assets/img/code/"+ten_ma_hinh+"_code.jpg"; 
+        
+                                // Hình 2: Lấy từ cột image_url trong Supabase
+                                largeLink.href = "assets/img/code/"+ten_ma_hinh+".jpg"; 
+
+                                // Kích hoạt Lightbox
+                                $('.popup-image').magnificPopup({
+                                    type: 'image',
+                                    mainClass: 'mfp-with-zoom', 
+                                    zoom: {
+                                        enabled: true,
+                                        duration: 200,
+                                        easing: 'ease-in-out'
+                                    }
+                                });
                           } else {
-                              // Hiển thị 1 mã như bình thường
-                              displayArea.innerHTML = `<b id="code-single">${fullCode}</b>`;
+                              barcodeImg.style.display = 'none';
                           }
 
                           document.getElementById('tri_gia_display').innerText = formatVND(savedData.tri_gia);
@@ -895,7 +922,7 @@
 
 
                           
-                        }
+                  }
 
                         function openGift() {
                           if (document.getElementById('packet-ui').classList.contains('opened')) return;
@@ -905,13 +932,13 @@
 
                           // Cập nhật nội dung lời chúc dựa trên tên người nhận đã lưu
                           const hoTen = savedData.ho_ten || "bạn"; // Nếu không có tên thì để mặc định là "bạn"
-                          document.getElementById('lời-chúc').innerText = `Chúc mừng ${hoTen} đã nhận phần thưởng! 🧧✨`;
+                          document.getElementById('lời-chúc').innerHTML= `Chúc mừng ${hoTen} đã nhận phần thưởng! 🧧✨`;
 
                           showGiftUI(true);
                         }
 
-                        function copyCode() {
-                          navigator.clipboard.writeText(savedData.ten_ma);
+                   function copyCode() {
+                          navigator.clipboard.writeText(savedData.ma_qua_tang);
                           document.getElementById('copy-msg').innerHTML = "✔️ Đã copy mã!";
 
                     // confetti({ 
@@ -929,7 +956,7 @@
 
                     // Gọi kiểu pháo hoa mới tại đây
                           fireworkRealistic();
-                        }
+                    }
 
                 // Gọi hàm khởi tạo
                         initCheck();
@@ -1011,21 +1038,7 @@
               }
             }
 
-            function copyIndividual(elementId) {
-                const code = document.getElementById(elementId).innerText;
-                navigator.clipboard.writeText(code);
-                
-                // Hiển thị thông báo và nổ pháo hoa nhỏ cho vui
-                document.getElementById('copy-msg').innerText = "✔️ Đã copy mã: " + code;
-                confetti({ particleCount: 50, spread: 40, origin: { y: 0.8 } });
-            }
-
-            // Giữ lại hàm copyCode cũ để dự phòng hoặc cho mã đơn
-            function copyCode() {
-                navigator.clipboard.writeText(savedData.ten_ma);
-                document.getElementById('copy-msg').innerText = "✔️ Đã copy toàn bộ chuỗi mã!";
-                fireworkRealistic();
-            }
+            
             function validatePhone(phone) {
                 // Regex này kiểm tra: Phải là số và có đúng 10 chữ số
                 const phone_regex = /^[0-9]{10}$/;
@@ -1091,6 +1104,7 @@
                 </a>
     </div>
   </div>
+
 </body>
 
 
