@@ -24,6 +24,7 @@
 
     <!-- MAIN STYLE FOR THIS TEMPLATE -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
     <!-- FONTS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600">
@@ -34,6 +35,7 @@
 </head>
 
 <body class="home">
+
 
     <!-- LOADER -->
     
@@ -1002,6 +1004,20 @@
     <script src="js/vendor/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript" src="html5lightbox/html5lightbox.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const lightbox = GLightbox({
+                selector: '.glightbox', // Khớp với class ở thẻ <a> của bạn
+                touchNavigation: true,
+                loop: true,
+                autoplayVideos: true,
+                width: '900px',           // Độ rộng popup video
+                height: '506px',          // Chiều cao popup (tỷ lệ 16:9)
+                videosWidth: '1024px',    // Giới hạn chiều rộng tối đa cho video
+            });
+        });
+    </script>
 </body>
 
 </html>
